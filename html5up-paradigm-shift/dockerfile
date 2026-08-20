@@ -1,0 +1,16 @@
+FROM nginx:alpine
+#labels for the image
+LABEL org.opencontainers.image.title="Image html5 shift"
+#repertoire de travail dans le conteneur
+WORKDIR /usr/share/nginx/html
+
+#commmande à lancer à la création de l'image
+RUN  rm -rf ./*
+COPY ./ .
+EXPOSE 80
+
+#commande à lancer à l'exécution du conteneur
+CMD ["nginx", "-g", "daemon off;"]
+
+# docker build -t html-edito-nginx .
+# docker run -d -p 81:80 --name html5up html-edito-nginx

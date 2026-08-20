@@ -1,0 +1,20 @@
+FROM httpd:alpine
+#labels for the image
+LABEL org.opencontainers.image.title="Image html5 massive"
+
+# Update the Alpine base image to reduce known OS vulnerabilities
+RUN apk --no-cache upgrade
+
+#repertoire de travail dans le conteneur
+WORKDIR /usr/local/apache2/htdocs
+
+#commmande à lancer à la création de l'image
+RUN  rm -rf ./*
+COPY ./ .
+EXPOSE 80
+
+#commande à lancer à l'exécution du conteneur
+CMD ["/bin/sh"]
+
+# docker build -t html-edito-apache .
+# docker run -d -p 82:80 --name html5up-massively html-edito-apache
